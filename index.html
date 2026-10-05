@@ -65,7 +65,7 @@ footer{display:flex;justify-content:center;gap:8px;margin-top:36px;padding-top:1
 (async()=>{
  const $=id=>document.getElementById(id);
  try{
-  const engine=await loadBaijiaxingEngine("./data/baijiaxing.json?v=20261006-1");
+  const engine=await loadBaijiaxingEngine("./data/baijiaxing.json?v=20261006-2");
   const meta=engine.getMeta();
   $("category").textContent=meta.category;
   $("authorship").textContent=meta.authorship;
@@ -81,10 +81,12 @@ footer{display:flex;justify-content:center;gap:8px;margin-top:36px;padding-top:1
     $("grid").querySelectorAll(".surname").forEach(b=>b.addEventListener("click",()=>selectById(b.dataset.id)));
   }
   function renderDetail(x){
+    const story=x.note
+      ? '<div class="section"><h3>姓氏故事</h3><p>'+x.note+'</p></div>'
+      : '';
     $("detail").innerHTML='<h2>'+x.name+'</h2><div class="meta">第 '+x.order+' 位 · '+x.type+'</div>'+
       '<div class="section"><h3>原文位置</h3><p class="original">'+x.originalGroup+'</p></div>'+
-      '<div class="section"><h3>姓氏小记</h3><p>'+(x.note||"本条目目前保留基础信息。后续只有在可核对可靠资料时，才补充主要源流、郡望、历史人物等内容。")+'</p></div>'+
-      '<div class="section"><h3>阅读提示</h3><p>'+x.caution+'</p></div>';
+      story;
   }
   function selectById(id){
     const x=engine.loaded.find(v=>v.id===id); if(!x)return;
