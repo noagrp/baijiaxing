@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#13110d">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="百家姓">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="./icon-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="./icon-512.png">
+<link rel="apple-touch-icon" href="./apple-touch-icon.png">
+<title>百家姓</title>
+<style>
+:root{--bg:#090908;--bg2:#12100c;--surface:#17140f;--surface2:#1f1a12;--text:#eee7d9;--muted:#9d9588;--gold:#d7b86d;--gold2:#f0d99c;--line:rgba(215,184,109,.2);--shadow:0 18px 48px rgba(0,0,0,.28)}
+*{box-sizing:border-box}html{background:var(--bg)}
+body{margin:0;min-height:100vh;color:var(--text);font-family:"Noto Serif SC","Songti SC","Microsoft YaHei",system-ui,-apple-system,sans-serif;background:radial-gradient(circle at 8% 0%,rgba(215,184,109,.09),transparent 28rem),linear-gradient(180deg,var(--bg2),var(--bg))}
+.page{width:min(1220px,100%);margin:auto;padding:max(28px,env(safe-area-inset-top)) max(18px,env(safe-area-inset-right)) max(30px,env(safe-area-inset-bottom)) max(18px,env(safe-area-inset-left))}
+header{display:flex;justify-content:space-between;align-items:center;gap:18px;margin-bottom:22px;padding-bottom:18px;border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:14px}.mark{width:56px;height:56px;display:grid;place-items:center;border-radius:17px;border:1px solid rgba(215,184,109,.5);background:rgba(110,84,34,.14);color:var(--gold2);font-size:28px;font-weight:800}
+h1{margin:0;color:var(--gold2);font-size:clamp(28px,4vw,42px)}.sub{margin:5px 0 0;color:var(--muted);font-size:12px}.back{color:var(--muted);text-decoration:none;font-size:12px}
+.info{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-bottom:14px}.ibox{padding:11px;border:1px solid var(--line);border-radius:12px;background:rgba(19,16,12,.72)}.ibox span{display:block;color:var(--muted);font-size:9px;margin-bottom:4px}.ibox b{font-size:12px;color:#e8dcc4}
+.note{margin:0 0 18px;padding:14px 16px;border:1px solid var(--line);border-radius:14px;background:rgba(24,19,13,.72);color:#c8bead;font-size:12px;line-height:1.75}
+.layout{display:grid;grid-template-columns:340px minmax(0,1fr);gap:18px;align-items:start}.side{position:sticky;top:14px;padding:14px;border:1px solid var(--line);border-radius:18px;background:rgba(18,15,11,.72)}.search{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:11px;background:#0e0d0a;color:var(--text);font:inherit;outline:none}.search:focus{border-color:rgba(215,184,109,.5)}
+.surname-grid{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:6px;margin-top:10px;max-height:610px;overflow:auto;padding-right:4px}.surname{aspect-ratio:1;display:grid;place-items:center;border:1px solid rgba(215,184,109,.13);border-radius:9px;background:rgba(26,21,15,.65);color:#e5d8bd;font:inherit;font-size:13px;cursor:pointer}.surname:hover,.surname.selected{border-color:rgba(215,184,109,.5);background:#2b2318}.surname.compound{grid-column:span 2;aspect-ratio:auto;min-height:42px}.more{width:100%;margin-top:10px;padding:10px;border:1px solid var(--line);border-radius:10px;background:rgba(42,33,22,.75);color:var(--gold2);font:inherit;font-size:11px;cursor:pointer}
+.detail{padding:22px;border:1px solid var(--line);border-radius:20px;background:linear-gradient(180deg,var(--surface2),var(--surface));box-shadow:var(--shadow)}.detail h2{margin:0;color:var(--gold2);font-size:40px}.meta{margin-top:5px;color:var(--muted);font-size:12px}.section{margin-top:17px;padding-top:15px;border-top:1px solid rgba(215,184,109,.12)}.section h3{margin:0 0 8px;color:var(--gold);font-size:14px}.section p{margin:0;color:#c9bfaf;font-size:12px;line-height:1.8}.original{font-size:22px;letter-spacing:.18em;color:#e8ddca}.empty{padding:20px;color:var(--muted);text-align:center;font-size:12px}
+footer{display:flex;justify-content:center;gap:8px;margin-top:36px;padding-top:18px;border-top:1px solid var(--line);color:#81786b;font-size:11px}footer a{color:inherit;text-decoration:none}
+@media(max-width:880px){.layout{grid-template-columns:1fr}.side{position:static}.surname-grid{max-height:none}.info{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.page{padding-left:13px;padding-right:13px}.mark{width:50px;height:50px}.surname-grid{grid-template-columns:repeat(6,minmax(0,1fr))}.detail{padding:17px}}
+</style>
+</head>
+<body>
+<main class="page">
+<header>
+  <div class="brand"><div class="mark" aria-hidden="true">姓</div><div><h1>百家姓</h1><p class="sub">原文次序 · 单姓复姓 · 姓氏小记 · 版本说明</p></div></div>
+  <a class="back" href="https://noagrp.github.io/zhong/">返回 中</a>
+</header>
+
+<div class="info">
+  <div class="ibox"><span>类别</span><b id="category">--</b></div>
+  <div class="ibox"><span>传统归属</span><b id="authorship">--</b></div>
+  <div class="ibox"><span>时代</span><b id="period">--</b></div>
+  <div class="ibox"><span>本版姓氏</span><b id="count">--</b></div>
+</div>
+
+<div class="note" id="summary"></div>
+<div class="note" id="versionNote"></div>
+
+<section class="layout">
+  <aside class="side">
+    <input id="search" class="search" type="search" placeholder="搜索姓氏、次序、单姓或复姓">
+    <div class="surname-grid" id="grid"></div>
+    <button id="more" class="more" type="button">加载下一批</button>
+  </aside>
+  <article class="detail" id="detail"><div class="empty">请选择一个姓氏。</div></article>
+</section>
+
+<footer><a href="https://noagrp.github.io/home/">noagrp home</a><span>·</span><a href="https://noagrp.github.io/zhong/">中</a></footer>
+</main>
+
+<script src="./src/baijiaxing-engine.js"></script>
+<script>
+(async()=>{
+ const $=id=>document.getElementById(id);
+ try{
+  const engine=await loadBaijiaxingEngine("./data/baijiaxing.json?v=20261006-1");
+  const meta=engine.getMeta();
+  $("category").textContent=meta.category;
+  $("authorship").textContent=meta.authorship;
+  $("period").textContent=meta.period;
+  $("count").textContent=engine.getCount()+"姓";
+  $("summary").textContent=meta.summary;
+  $("versionNote").textContent="版本说明："+meta.versionNote;
+
+  let loadedChunks=0,selectedId=null,currentList=[];
+  function renderGrid(list){
+    currentList=list;
+    $("grid").innerHTML=list.map(x=>'<button type="button" class="surname'+(x.type==="复姓"?' compound':'')+(x.id===selectedId?' selected':'')+'" data-id="'+x.id+'" title="第'+x.order+'位">'+x.name+'</button>').join("");
+    $("grid").querySelectorAll(".surname").forEach(b=>b.addEventListener("click",()=>selectById(b.dataset.id)));
+  }
+  function renderDetail(x){
+    $("detail").innerHTML='<h2>'+x.name+'</h2><div class="meta">第 '+x.order+' 位 · '+x.type+'</div>'+
+      '<div class="section"><h3>原文位置</h3><p class="original">'+x.originalGroup+'</p></div>'+
+      '<div class="section"><h3>姓氏小记</h3><p>'+(x.note||"本条目目前保留基础信息。后续只有在可核对可靠资料时，才补充主要源流、郡望、历史人物等内容。")+'</p></div>'+
+      '<div class="section"><h3>阅读提示</h3><p>'+x.caution+'</p></div>';
+  }
+  function selectById(id){
+    const x=engine.loaded.find(v=>v.id===id); if(!x)return;
+    selectedId=id; renderGrid(currentList); renderDetail(x);
+  }
+  async function loadNext(){
+    if(loadedChunks>=engine.getChunks().length){$("more").hidden=true;return;}
+    loadedChunks++; await engine.loadChunk(loadedChunks); renderGrid(engine.loaded);
+    if(loadedChunks>=engine.getChunks().length)$("more").hidden=true;
+  }
+  $("more").addEventListener("click",loadNext);
+  $("search").addEventListener("input",async e=>{
+    const q=e.target.value.trim();
+    if(!q){renderGrid(engine.loaded);return;}
+    const results=await engine.search(q); renderGrid(results); $("more").hidden=true;
+  });
+  $("search").addEventListener("search",()=>{if(!$("search").value){$("more").hidden=loadedChunks>=engine.getChunks().length;renderGrid(engine.loaded);}});
+  await loadNext();
+  if(engine.loaded.length){selectedId=engine.loaded[0].id;renderGrid(engine.loaded);renderDetail(engine.loaded[0]);}
+  if("serviceWorker" in navigator)navigator.serviceWorker.register("./sw.js").catch(()=>{});
+ }catch(e){$("detail").innerHTML='<div class="empty">百家姓资料载入失败，请刷新页面再试。</div>';}
+})();
+</script>
+</body>
+</html>
