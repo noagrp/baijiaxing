@@ -1,0 +1,79 @@
+{
+  "meta": {
+    "title": "百家姓",
+    "category": "蒙学",
+    "authorship": "传统蒙学读物，作者不详",
+    "period": "一般认为成书于北宋初期，后世有增补与不同传本",
+    "structure": "本应用采用现代常见的504姓通行次序作为阅读结构，包括单姓与复姓。",
+    "summary": "《百家姓》把姓氏编成四字一句、便于诵读记忆的蒙学文本。它的排列不是现代人口排名，而是历史文本次序。",
+    "versionNote": "本应用采用现代常见的504姓通行次序作为阅读底本，并保留版本差异提示。不同传本在个别姓氏、字形和总数统计上可能存在差异，因此不把某一网络版本称为唯一标准。",
+    "sources": [
+      {
+        "name": "字典网《百家姓》通行次序",
+        "url": "https://zidian.openi.cn/guwen/baijiaxing/"
+      },
+      {
+        "name": "YellowBridge 百家姓全文对照",
+        "url": "https://ns2.yellowbridge.com/onlinelit/baijiaxing.php"
+      }
+    ]
+  },
+  "count": 504,
+  "chunkSize": 56,
+  "chunks": [
+    {
+      "file": "./data/surnames-01.json",
+      "start": 1,
+      "end": 56,
+      "count": 56
+    },
+    {
+      "file": "./data/surnames-02.json",
+      "start": 57,
+      "end": 112,
+      "count": 56
+    },
+    {
+      "file": "./data/surnames-03.json",
+      "start": 113,
+      "end": 168,
+      "count": 56
+    },
+    {
+      "file": "./data/surnames-04.json",
+      "start": 169,
+      "end": 224,
+      "count": 56
+    },
+    {
+      "file": "./data/surnames-05.json",
+      "start": 225,
+      "end": 280,
+      "count": 56
+    },
+    {
+      "file": "./data/surnames-06.json",
+      "start": 281,
+      "end": 336,
+      "count": 56
+    },
+    {
+      "file": "./data/surnames-07.json",
+      "start": 337,
+      "end": 392,
+      "count": 56
+    },
+    {
+      "file": "./data/surnames-08.json",
+      "start": 393,
+      "end": 448,
+      "count": 56
+    },
+    {
+      "file": "./data/surnames-09.json",
+      "start": 449,
+      "end": 504,
+      "count": 56
+    }
+  ]
+}
